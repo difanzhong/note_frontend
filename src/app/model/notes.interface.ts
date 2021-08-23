@@ -1,5 +1,5 @@
-import { IID } from "../model/id.interface"
-import { ITask} from "../tasks/tasks.interface"
+import { IID } from "./id.interface"
+import { ITask} from "./tasks.interface"
 
 export interface INote {
 	created_at: string,

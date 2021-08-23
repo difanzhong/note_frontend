@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../note.service';
-import { INote } from './notes.interface';
+import { INote } from '../model/notes.interface';
 
 @Component({
   selector: 'app-notes',
@@ -20,4 +20,7 @@ export class NotesComponent implements OnInit {
       });
   }
 
+  goToSingleNote(id: any) {
+    console.log(id);
+  }
 }

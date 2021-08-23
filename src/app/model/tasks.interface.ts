@@ -1,4 +1,4 @@
-import { IID } from "../model/id.interface";
+import { IID } from "./id.interface";
 
 export interface ITask {
 	created_at: string;
