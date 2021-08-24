@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../note.service';
 import { INote } from '../model/notes.interface'
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { IResponse } from '../model/response.interface';
 
@@ -17,7 +17,7 @@ export class NoteComponent implements OnInit {
   note = {} as INote;
   noteForm = {} as FormGroup;
 
-  constructor(private route: ActivatedRoute, private service: NoteService) { 
+  constructor(private router: Router, private route: ActivatedRoute, private service: NoteService) { 
     this.route.paramMap.subscribe(params => {
       this.note_id = params.get('note_id');
       if (this.note_id === "new") return null;
@@ -73,6 +73,7 @@ export class NoteComponent implements OnInit {
       console.log(response);
       let resp = response as IResponse;
       if (resp.status != "SUCCESS") alert("Error Happend!");
+      this.router.navigate(['/notes']);
     });
   }
 
@@ -82,19 +83,28 @@ export class NoteComponent implements OnInit {
       console.log(response);
       let resp = response as IResponse;
       if (resp.status != "SUCCESS") alert("Error Happend!");
+      this.router.navigate(['/notes']);
     });
   }
 
   on_delete(id: any) {
-
+    this.service.removeNote(this.note_id).subscribe(response => {
+      console.log(response);
+      // let resp = response as IResponse;
+      // if (resp.status != "SUCCESS") alert("Error Happend!");
+      this.router.navigate(['/notes']);
+    });
   }
 
   toggleModal() {
-
+    const body = document.querySelector('body') as Element;
+    const modal = document.querySelector('.modal') as Element;
+    modal.classList.toggle('opacity-0');
+    modal.classList.toggle('pointer-events-none');
+    body.classList.toggle('modal-active');
   }
 
   get tasks() {
     return this.noteForm.get('tasks') as FormArray;
   }
-
 }
