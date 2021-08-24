@@ -7,17 +7,22 @@ import { AppComponent } from './app.component';
 import { NotesComponent } from './notes/notes.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { NoteService } from './note.service';
+import { NoteComponent } from './note/note.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotesComponent,
-    TasksComponent
+    TasksComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     NoteService

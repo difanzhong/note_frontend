@@ -22,5 +22,6 @@ export class NotesComponent implements OnInit {
 
   goToSingleNote(id: any) {
     console.log(id);
+    return null;
   }
 }
